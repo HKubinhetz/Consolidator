@@ -1,22 +1,23 @@
 import pandas as pd
-import numpy as np
 import glob
 
+# TODO - BUILD A FILE SELECTOR
 files = glob.glob("C:\\Users\\ricku\\Desktop\\Amostragem\\Smallsample\\*.csv")
 
+# Declaring an empty DataFrame list
 df_list = []
 
+# For loop to append all selected files.
 for f in files:
-
     csv = pd.read_csv(f, delimiter=";")
     df_list.append(csv)
 
+# Concatenating files and clearing base (setting date column to correct format and removing duplicates)
 sales = pd.concat(df_list)
-
 sales['DateTime'] = pd.to_datetime(sales['DateTime'])
-print(sales.dtypes)
+sales = sales.drop_duplicates(subset='DateTime', keep='first')
+print(sales)
 
-df_list.
+# sales.to_csv('Consolidated.csv')
 
-pd.df_list.to_csv()
 
