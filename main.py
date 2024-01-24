@@ -1,11 +1,30 @@
 import pandas as pd
 import glob
 from datetime import datetime
+import tkinter as tk
+from tkinter import filedialog as fd
 
-# TODO - Select all CSV Files in the folder after a given specification
-# Consider using GLOB - https://docs.python.org/3/library/glob.html
-# files_home = glob.glob("C:\\Users\\ricku\\Desktop\\Amostragem\\Smallsample\\*.csv")
-files = glob.glob("C:\\Users\\CS317813\\Desktop\\DadosTBGConsolidados\\*.csv")
+# -------------- Function Declarations ------------
+
+
+def get_folder():
+    # Creates a Tkinter window to select a folder directory with desired files,
+    # then returns the compiled list.
+    root = tk.Tk()
+    root.withdraw()
+
+    filepath = fd.askdirectory(initialdir="C:\\Users\\CS317813\\Desktop\\DadosTBGConsolidados",
+                               title="Selecione a pasta que deseja consolidar os CSVs").replace("/", '\\')
+
+    filelist = glob.glob(filepath + "\*.csv")
+
+    return filelist
+
+
+# ----------------- Main Procedure  -----------------
+
+# Function calling
+files = get_folder()
 
 # Declaring an empty DataFrame list
 df_list = []
