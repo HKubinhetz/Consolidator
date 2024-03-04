@@ -36,7 +36,7 @@ for f in files:
 
 # Concatenating files and clearing base (setting date column to correct format and removing duplicates)
 concatdata = pd.concat(df_list)
-concatdata['DateTime'] = pd.to_datetime(concatdata['DateTime'])
+# concatdata['DateTime'] = pd.to_datetime(concatdata['DateTime'])
 concatdata = concatdata.drop_duplicates(subset='DateTime', keep='first')
 
 # Defining Today's Date
